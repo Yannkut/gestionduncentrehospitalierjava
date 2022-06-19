@@ -1,0 +1,163 @@
+
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Facture</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  
+<link th:href ="@{/Facture/main.css}" rel ="stylesheet">
+
+</head>
+ 
+ 
+
+    
+<body>
+ <form class="row g-3" method="post" th:object="${facture}" th:action="@{/cpcreatefac}">
+  <header>
+    <h1>FACTURE
+      <h2>Groupe Cobra Médical</h2>
+    </h1>
+  </header>
+  <sectionclass="flex">
+    <dl>
+      <dt> Facture</dt>
+      
+       <div >
+      <label for "inputid" class="form-label"><dt>ID</dt>
+      <input type="text" class ="form-label" id="inputid" th:field="${facture.id}"> 
+      </div>
+      <div class="col-md-6">
+      <label for "inputdate" class="form-label"><dt> Date de facturation</dt>
+      <input type="date" class ="form-label" id="inputdate" th:field="${facture.date}" placeholder="date en jj/mm/an" value="13-12-2021" required>
+      </div>
+    </dl>
+</section>
+
+  <section class="flex">
+    <dl class="bloc">
+      <dt> Facturé à:</dt>
+        <div class="col-md-6">
+      <label for "inputdestfacture" class="form-label"><dt> Destinataire</dt>
+      <input type="text" class ="form-label" id="inputdestfacture" th:field="${facture.destfacture}" placeholder="Entreprise ou particulier" value="LA DIFFERENCE DIGITALE" required> 
+      </div>
+      
+      
+        <dl>
+        
+          <dt> Téléphone </dt>
+           <div class="col-md-6">
+      <label for "inputtel" class="form-label"><dt></dt>
+      <input type="text" class ="form-label" id="inputtel" th:field="${facture.tel}" placeholder="num de Tel" value="90414646" required>
+      </div>
+          <dt> email</dt>
+           <div class="col-md-6">
+      <label for "email" class="form-label"><dt></dt>
+      <input type="email" class ="form-label" id="email"  th:field="${facture.email}" placeholder="..@gmail.com" value="yannkut44@gmail.com" required>
+      </div>
+      
+      
+      
+
+        </dl>
+      </dd>
+      
+    </dl>
+    <dl class="bloc">
+      <dt> Description de service:</dt>
+        <div class="col-md-6">
+    <label for "description" class="form-label"><dt> Description</dt>
+        <select id="description" class="form-label" th:field="${facture.description}" required>
+                     <option value="Liste de Choix">Liste de choix...</option>
+                     <optgroup label="Groupe d'options ">
+                     <option value="Analyses Medicales">Services</option>
+                     <option value="Cardiologie">Cardiologie</option>
+                     <option value="Dermatologie">Dermatologie</option>
+                     <option value="Gastroentérologie">Gastroentérologie</option>
+                     <option value="Gynecologie">Gynécologie</option>
+                     <option value="Mammographie">Mammographie</option>
+                     <option value="Medecine generale">Médecine générale</option>
+                     <option value="Neurologie">Neurologie</option>
+                     <option value="Osteopathie">Ostéopathie</option>
+                     <option value="Pediatrie">Pédiatrie</option>
+                     <option value="Psychiatrie">Psychiatrie</option>
+                     <option value="Radiologie">Radiologie</option>
+                     <option value="Rhumatologie">Rhumatologie</option>
+                     <option value="Scanner">Scanner</option>
+                     <option value="Redustim">Rédustim</option>
+            
+                     </optgroup>
+                   
+                   </select>
+      </dl>
+  </section>
+  
+  </form>
+  <table>
+    <thead>
+      <tr> 
+        <th> Quantité</th>
+        <th> Désignation</th>
+        <th> Prix Unitaire</th>
+        <th> Prix Total</th>
+       
+      </tr>
+      </thead>
+    <tbody>
+      <tr>
+              
+
+    
+        <td>
+        <label for "inputquantite"class="form-label" >
+         <input type="text" min="1" max="100" value ="21" id="inputquantite" placeholder="La quantité" th:text="${facture.quantite}" >
+         </td>
+        <td> 
+        <label for "designation"class="form-label" >
+        <input type ="text" id =" designation" placeholder ="La désigantion" value="vac" th:text="${facture.designation}">
+        </td>
+        <td> 
+        <label for "pu" class= "form-label">
+        <input type="text" id="pu" placeholder ="pu" value="10" th:text="${facture.pu}">
+        </td>
+        <td>
+         <label for "pt" class= "form-label">
+         <input type="text" id ="pt" value="20" th:text="${facture.pt}"> 
+         </td>
+        
+       
+     
+      </tr>
+
+      </tbody>
+    <tfoot>
+      <tr> 
+        <td colspan="3">− Faire les chèques payable au nom de moi −</td>
+        <td>Total:</td>
+        <td>480&#8202;$</td>
+      </tr>
+    </tfoot>
+</table>
+  <footer>
+    <p> Groupe – Cobra − Médical | <a href="http://impacteaffaires.ca/">impactaffaire</a></p>
+    <p> 1777 some street in the woods, Wentworth-Nord, Qc, J0T 1Y0 | Tél. 450-555-1000 | <a href="mailto:mail@me.com">mail@me.com</a></p>
+  </footer>
+    <div class="my-3">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

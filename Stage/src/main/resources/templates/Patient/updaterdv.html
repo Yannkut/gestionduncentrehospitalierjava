@@ -1,0 +1,152 @@
+
+
+<!Doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title> Mise à jour du formulaire d'enregistrement</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Bethany - v4.6.0
+  * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+  <body>
+  
+  
+   <form class="row g-3" method="post" th:action="@{/pcreaterdv}" th:object="${rendezvous}">
+
+    <div class="col-md-6">
+    <label for="inputfid" class="form-label">ID </label>
+    <input type="text" class="form-control" id="inputfid" th:field="*{id}" readonly="readonly"></input>
+  </div>
+  
+   <div class="col-md-6">
+    <label for="inputfname" class="form-label">Entrez votre nom</label>
+    <input type="text" class="form-control" id="inputfname" placeholder="KUTOGLO" th:field="*{Nom}"></input>
+  </div>
+   <div class="col-md-6">
+    <label for="inputfprenom" class="form-label">Entrez votre prénom</label>
+    <input type="text" class="form-control" id="inputfprenom" placeholder="Yannick" th:field="*{Prenom}"></input>
+  </div>
+  <div class="col-md-6">
+    <label for="inputfage" class="form-label">Entrez votre age</label>
+    <input type="text" class="form-control" id="inputfage" placeholder="18" th:field="*{Age}"></input>
+  </div>
+  <div class="col-md-6">
+    <label for="inputnum" class="form-label">Entrez votre numero de Téléphone</label>
+    <input type="text" class="form-control" id="inputnum" placeholder="90199429" th:field="*{NumTelephone}"></input>
+  </div>
+  <div class="col-md-6">
+    <label for="inputspeciality" class="form-label">Specialités</label>
+          <select id="inputspeciality" class="form-control" th:field="*{Speciality}">
+                     <option value="Liste de Choix">Liste de choix...</option>
+                     <optgroup label="Groupe d'options ">
+                       <option value="Analyses Medicales">Analyses médicales</option>
+                       <option value="Cardiologie">Cardiologie</option>
+                       <option value="Dermatologie">Dermatologie</option>
+                       <option value="Gastroentérologie">Gastroentérologie</option>
+                       <option value="Gynecologie">Gynécologie</option>
+                       <option value="Mammographie">Mammographie</option>
+                       <option value="Medecine generale">Médecine générale</option>
+                       <option value="Neurologie">Neurologie</option>
+                       <option value="Osteopathie">Ostéopathie</option>
+                       <option value="Pediatrie">Pédiatrie</option>
+                       <option value="Psychiatrie">Psychiatrie</option>
+                       <option value="Radiologie">Radiologie</option>
+                       <option value="Rhumatologie">Rhumatologie</option>
+                       <option value="Scanner">Scanner</option>
+                       <option value="Redustim">Rédustim</option>
+            
+                     </optgroup>
+                   
+                   </select>
+    
+  </div>
+  <div class="container">
+    <h1>Plages Horaires</h1>
+   <div class="form-check">
+ <div class="form-check">
+  <input class="form-check-input" type="checkbox" value=" 08H a 12H " id="flexCheckDefault" th:field="*{PlageHoraire}">
+  <label class="form-check-label" for="flexCheckDefault">
+    08 H à 12 H
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="14H a 18H" id="flexCheckChecked"  th:field="*{PlageHoraire}" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    14 H à 18 H
+  </label>
+</div>
+     </div>
+     </div>
+  </div>
+  <div class="form-group">
+       
+         <label for="message">Message</label>
+         <textarea class="form-control" id="message" rows="3" th:field="*{Message}"></textarea>
+       </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+
+
+  
+    <!-- ======= Hero Section ======= -->
+
+
+  </section><!-- End Hero -->
+   
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+    </div>
+    <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  </body>
+</html>
+

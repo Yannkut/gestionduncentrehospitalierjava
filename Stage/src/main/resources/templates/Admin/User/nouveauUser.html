@@ -1,0 +1,224 @@
+
+
+<!Doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bethany Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Bethany - v4.6.0
+  * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+  <body>
+  
+   <form class="row g-3" method="post" th:object="${user}" th:action="@{/createuser}">
+   <div class="col-md-6">
+    <label for="inputfid" class="form-label">ID </label>
+    <input type="text" class="form-control" id="inputfid" th:field="${user.id}"></input>
+  </div>
+   
+  <div class="col-md-6">
+    <label for="inputusername" class="form-label"> Username</label>
+    <input type="text" class="form-control" id="inputusername" placeholder="Nom de l'Utilisateur" th:field="${user.username}" required>
+    <div class="valid-feedback">
+      Semble correct!
+    </div>
+     <div class="invalid-feedback">
+      Le nom d'Utilisateur est obligatoire!
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="inputps" class="form-label">Password</label>
+    <input type="text" class="form-control" id="inputps" placeholder="Le mot de passe de l'Utilisateur" th:field="${user.password}" required>
+      <div class="valid-feedback">
+      Semble correct!
+    </div>
+     <div class="invalid-feedback">
+      Le mot de passe est obligatoire!
+    </div>
+  </div>
+ <div class="col-md-6">
+    <label for="inputps" class="form-label">Active</label>
+    <input type="text" class="form-control" id="inputps" placeholder="1" th:field="${user.active}">
+    
+  </div>
+
+    <div class="col-md-6">
+    <label for="inputrole" class="form-label">Roles</label>
+    <input type="text" class="form-control" id="inputrole" placeholder="Le role de l'Utilisateur" th:field="${user.roles}" required>
+  
+    <div class="valid-feedback">
+      Semble correct!
+    </div>
+     <div class="invalid-feedback">
+      Le role de l'Utilisateur est obligatoire!
+    </div></div>
+
+     <div class="col-md-6">
+    <label for="inputp" class="form-label">Permissions</label>
+    <input type="text" class="form-control" id="inputp" placeholder="Permissions" th:field="${user.permissions}">
+  </div>
+  
+  <div class="my-3">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="row g-3" method="post" th:object="${user}" th:action="@{/getUser}">
+      <input type="text" class="form-control" id="inputfid" th:field="${user.id}"></input>
+      <button type="submit" class="btn btn-primary">Search in</button>
+    </form>
+  </div>
+</nav>
+
+
+
+ <table border="1" cellpadding="10" class="table table-striped">
+        <thead>
+            <tr>
+                
+             <th>ID </th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Active</th>
+                <th>Role</th>
+                <th>Permissions</th>
+                
+             
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+                
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.username}">Username</td>
+                <td th:text="${user.password}">Password</td>
+                <td th:text="${user.active}">Password</td>
+                <td th:text="${user.roles}">Role</td>
+                <td th:text="${user.permissions}">Permissions</td>
+                
+                <td>
+                    <a th:href="@{'/getuser?id=' + ${user.id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/deleteuser?id=' + ${user.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+     <h2>Recherchez le Patient par Nom</h2>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="row g-3" method="post" th:object="${user}" th:action="@{/getUserbyroles}">
+      <input type="text" class="form-control" id="inputroles" th:field="${user.roles}"></input>
+      <button type="submit" class="btn btn-primary">Search in</button>
+    </form>
+  </div>
+</nav>
+<table border="1" cellpadding="10" class="table table-striped">
+        <thead>
+            <tr>
+                
+             <th>ID </th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Active</th>
+                <th>Role</th>
+                <th>Permissions</th>
+                
+             
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+                
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.username}">Username</td>
+                <td th:text="${user.password}">Password</td>
+                <td th:text="${user.active}">Password</td>
+                <td th:text="${user.roles}">Role</td>
+                <td th:text="${user.permissions}">Permissions</td>
+                
+                <td>
+                    <a th:href="@{'/getuser?id=' + ${user.id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/deleteuser?id=' + ${user.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+ 
+    <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>
+

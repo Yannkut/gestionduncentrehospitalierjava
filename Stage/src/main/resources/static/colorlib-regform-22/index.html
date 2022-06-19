@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm_v6 by Colorlib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="colorlib-regform-22/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="colorlib-regform-22/css/style.css">
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="colorlib-regform-22/images/registration-form-6.jpg" alt="">
+				</div>
+				<form id="form" class="row g-3 needs-validation" novalidate method="post" th:object="${rendezvous}" th:action="@{/pcreaterdv}">
+					<h3>Make An Appointment</h3>
+					<input type="text" class="form-control" id="id" th:field="${rendezvous.id}">
+					<div class="form-row">
+					
+						<input type="text" class="form-control" id="name" placeholder="KUTOGLO" th:field="${rendezvous.Nom}" value="Nom" required>
+						<input type="text" class="form-control" id="prenom" placeholder="Yannick" th:field="${rendezvous.Prenom}" value="Prénom" required>
+					</div>
+					<div class="form-row">
+					<label for="age" class="form-label">Age
+					    <input type="text" class="form-control" id="age" th:field="${rendezvous.Age}" required>
+					    <label for="age" class="form-label">Numéro de Téléphone
+						<input type="text" class="form-control" id="num"  th:field="${rendezvous.NumTelephone}" value="90199429" required>
+						
+					</div>				
+					<div class="form-row">
+
+						<div class="form-holder">
+							<select name="speciality" id="" class="form-control" th:field="${rendezvous.Speciality}">
+								<option value="" disabled selected>Choix du domaine</option>
+							          <optgroup label="Groupe d'options ">
+                     <option value="Analyses Medicales">Analyses médicales</option>
+                     <option value="Cardiologie">Cardiologie</option>
+                     <option value="Dermatologie">Dermatologie</option>
+                     <option value="Gastroentérologie">Gastroentérologie</option>
+                     <option value="Gynecologie">Gynécologie</option>
+                     <option value="Mammographie">Mammographie</option>
+                     <option value="Medecine generale">Médecine générale</option>
+                     <option value="Neurologie">Neurologie</option>
+                     <option value="Osteopathie">Ostéopathie</option>
+                     <option value="Pediatrie">Pédiatrie</option>
+                     <option value="Psychiatrie">Psychiatrie</option>
+                     <option value="Radiologie">Radiologie</option>
+                     <option value="Rhumatologie">Rhumatologie</option>
+                     <option value="Scanner">Scanner</option>
+                     <option value="Redustim">Rédustim</option>
+            
+                     </optgroup>
+							</select>
+							<i class="zmdi zmdi-chevron-down"></i>
+						</div>
+					</div>
+					
+					<div class="form-row">
+					<label class="form-check-label" for="horaire">08 H à 12 H
+					<input type="checkbox" class="form-check-input" value="08H a 12H" id="horaire"  th:field="${rendezvous.PlageHoraire}" checked>
+					<label class="form-check-label" for="horaire">14 H à 18 H
+					<input type="checkbox" class="form-check-input" value="14H a 18H" id="horaire"  th:field="${rendezvous.PlageHoraire}" checked placeholder="14 H à 18 H">
+						
+						
+					</div>
+					<textarea name="" id="message" placeholder="Message"  th:field="${rendezvous.Message}" class="form-control" style="height: 130px;"></textarea>
+					<button>Book Now
+						<i class="zmdi zmdi-long-arrow-right"></i>
+					</button>
+				</form>
+				
+			</div>
+		</div>
+
+		<script src="colorlib-regform-22/js/jquery-3.3.1.min.js"></script>
+		<script src="colorlib-regform-22/js/main.js"></script>
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Cobra Medical  Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Bethany - v4.6.0
+  * Template URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <h1 class="text-light"><a href="index.html"><span>COBRA MEDICAL</span></a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+            <li><a class="nav-link scrollto" href="#about">Nos spécialités</a></li>
+            <li><a class="nav-link scrollto" href="#services">Recrutement</a></li>
+                <!-------------  Début   Patient      ---------------->
+             
+                <li sec:authorize="hasRole('PATIENT')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{'~/patient'}">Espace Patient</a>
+                </li>
+                 <!-------------   Fin  Patient     ---------------->
+                 
+                 
+          <!-------------  <li><a class="nav-link scrollto " href="/newRDV" >Rendezvous</a></li>---------------->
+     
+            <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          
+                
+                
+                <li class="dropdown"><a href="#"><span>Administration</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                
+                
+                  
+                  
+                  
+                        <!-------------  Début   Admin      ---------------->
+             
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{'~/admin'}">Admin</a>
+                </li>
+                 <!-------------   Fin  Admin      ---------------->
+                 
+                    <!-------------  Début   Secrétaire     ---------------->
+                <li sec:authorize="hasAnyRole('ADMIN','SECRETAIRE')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/secretaire}">Secretaire</a>
+                </li>
+
+                <!-------------  Fin   Secrétaire     ---------------->
+                <!-------------  Début Comptable    ---------------->
+                 <li sec:authorize="hasAnyRole('ADMIN','COMPTABLE')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/comptable}">Comptable</a>
+                </li>
+
+               <!-------------  Fin  Comptable    ---------------->
+          
+               <!-------------  Début   Actionnaire      ---------------->
+                   <li sec:authorize="hasAnyRole('ADMIN','ACTIONNAIRE')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/actionnaire}">Actionnaire</a>
+                </li>
+              
+                <!-------------   Fin Actionnaire    ---------------->
+                
+                <!------------- Début Médecin   ---------------->
+                   <li sec:authorize="hasAnyRole('ADMIN','MEDECIN')" class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{~/medecin}">Médecin</a>
+                </li>
+               
+               
+                <!-------------   Fin Médecin    ---------------->
+                  
+              
+              
+              </ul>
+            </li>  
+                
+            <li><a class="nav-link scrollto" href="/gestioncontact">Contactez nous</a></li>
+            <li><a class="nav-link scrollto" href="/rdvpatientpagedacceuil">Prendre un Rendezvous</a></li>
+            <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          </ul>
+          
+          <i class="bi bi-list mobile-nav-toggle"></i>
+          
+          
+          
+           <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+          
+                <button  sec:authorize="isAuthenticated()" class="btn btn-outline-danger btn-lg btn-block" type="submit">Déconnecté
+                 l'Utilisateur : <span sec:authentication="principal.username">User</span> ayant le Role: <span sec:authentication="principal.authorities">Role</span>
+                 </button>
+                <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit" >Login</button>
+                
+                
+                
+                
+               
+</form>
+
+
+<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/signup}">
+<button sec:authorize="isAnonymous()" th:href="@{~/signup}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+                
+           </form>
+           
+        </nav><!-- .navbar -->
+      
+        
+        
+        
+       
+
+      </div><!-- End Header Container -->
+     
+      
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+    
+      <h1>Groupe Cobra Médical </h1>
+      <h2>Bienvenue sur le site internet du Groupe Cobra Médical, l’un des plus grands groupes Hospitaliers privés de la Région. 
+
+Nous vous invitons à découvrir notre Groupe et ses cliniques et vous souhaitons une agréable visite.</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+
+
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
+            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="300">
+            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="400">
+            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="500">
+            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="600">
+            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+   <article class="single-page-article clr">
+
+	
+<div class="entry clr" itemprop="text">
+		<ol>
+<li><strong>Soins intensifs et Urgences</strong></li>
+</ol>
+<ul>
+<li>Disponible 24h/24 avec une ambulance médicalisée</li>
+<li>Une hospitalisation équipée de 80 lits avec des chambres aux standards internationales.</li>
+</ul>
+<ol start="2">
+<li><strong>Hospitalisation</strong></li>
+</ol>
+<ul>
+<li>80 lits d’hospitalisation</li>
+<li>Médecine et spécialités</li>
+<li>Chirurgie et spécialités</li>
+<li>Gynécologie &#8211; Obstétrique</li>
+<li>Pédiatrie</li>
+<li>Soins intensifs</li>
+</ul>
+<ol start="3">
+<li><strong>Assistance médicale à la procréation</strong></li>
+</ol>
+<ul>
+<li>FIV (Fécondation In Vitro)</li>
+<li>ICSI (Injection Intra Cytoplasmique de Spermatozoïdes)</li>
+<li>Insémination IAC (Insémination Artificielle / reseize intra-utérine avec sperme du conjoint)</li>
+<li>Don d’embryons</li>
+<li>Don d’ovocytes</li>
+<li>Don de sperme</li>
+</ul>
+<ol start="4">
+<li><strong>Unité Mère et Enfant</strong></li>
+</ol>
+<ul>
+<li>Gynécologie &amp; Obstétrique</li>
+<li>Pédiatrie et unité de néonatalogie</li>
+<li>Vaccination</li>
+</ul>
+<ol start="5">
+<li><strong>Chirurgie générale et spécialités chirurgicales</strong></li>
+</ol>
+<ul>
+<li>Traumatologie &#8211; Orthopédie</li>
+<li>Urologie</li>
+<li>Neurochirurgie</li>
+<li>Chirurgie endoscopique</li>
+<li>ORL</li>
+</ul>
+<ol start="6">
+<li><strong>Médecine et spécialités médicales</strong></li>
+</ol>
+<ul>
+<li>Cardiologie et explorations fonctionnelles</li>
+<li>Neurologie et explorations fonctionnelles</li>
+<li>Nephrologie</li>
+<li>Rhumatologie</li>
+<li>Pneumologie</li>
+<li>Gastroentérologie</li>
+<li>Diabétologie</li>
+<li>Dermatologie et médecine interne</li>
+<li>Psychologie médicale</li>
+<li>Psychiatrie</li>
+<li>Médecine du travail</li>
+<li>Médecine physique et rééducation fonctionnelle</li>
+<li>Pathologie du sommeil et exploration</li>
+</ul>
+<ol start="7">
+<li><strong>Aide au diagnostic</strong></li>
+<li><strong>Imagerie médicale</strong></li>
+</ol>
+<ul>
+<li>Radiologie</li>
+<li>Mammographie</li>
+<li>Scanner</li>
+<li>Echographie 3D / 4D</li>
+</ul>
+<ol>
+<li>Analyses médicales</li>
+</ol>
+<ul>
+<li>Laboratoire de Biologie Médicale accrédité par le  COFRAC selon la norme ISO 15 189 depuis 2012 (Accréditation N° 8 &#8211; 3099 Portée disponible sur www.cofrac.fr)</li>
+<li>Laboratoire d’Assistance Médicale à la Procréation labellisé par le GIERAF depuis 2015.</li>
+</ul>
+<ol start="8">
+<li>Prise en charge des malades à domicile</li>
+</ol>
+<ul>
+<li>Soins infirmiers à domicile</li>
+<li>Soins palliatifs</li>
+<li>Soins liés à la perte d’autonomie</li>
+<li>Soins postopératoires et post-hospitaliers</li>
+<li>Un service de prélèvement à domicile</li>
+</ul>
+<p>PRISE EN CHARGE DES MALADES A DOMICILE.</p>
+<p>Le Centre Hospitalier Cobra Médical vous propose une gamme complète de service de soins à domicile pour assurer une meilleure prise en charge médicale efficiente. Nous vous garantissons le maintien d’une qualité de vie maximale et d’un environnement sécuritaire tout en vous permettant de rester à votre lieu de résidence  ou d’y retourner rapidement après hospitalisation.</p>
+<p>Le but est :</p>
+<ul>
+<li>De vous assurer après une hospitalisation ou après une consultation, un suivi médical régulier à domicile :</li>
+</ul>
+<p>&#8211;  Soit à court terme : pour vous assurer une guérison complète.</p>
+<p>&#8211;  Soit à long terme : pour vous éviter des situations d’aggravation brutale de la maladie qui conduit parfois à des hospitalisations en urgence.</p>
+<ul>
+<li>de développer la notion de médecin traitant ou médecin de famille</li>
+<li>d’établir entre vous et votre médecin « la relation médecin-malade »</li>
+</ul>
+<p>L’avantage est d’avoir un médecin traitant qui vous assure un suivi médical régulier qui permet à ce dernier :</p>
+<ul>
+<li>de mieux vous connaître ;</li>
+<li>d’appréhender vite et au mieux les problèmes que la maladie vous posera ;</li>
+<li>de répondre avec efficacité aux sollicitations en cas d’urgence.</li>
+</ul>
+	</div>
+</article>
+
+
+      </div>
+    </section><!-- End About Section -->
+
+    
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-right">
+            <div class="content">
+              <h3>Pourquoi choisir le groupe Hospitalier Cobra Médical?</h3>
+              <p>
+              Le Centre Hospitalier Cobra Médical est un pôle d’excellence, un espace de bien-être pour les patients, un cadre d’épanouissement et de réalisation de soi pour le personnel.
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-receipt"></i>
+                    <h4>Cobra Médical Paris</h4>
+                 
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-cube-alt"></i>
+                    <h4>Cobra Médical Toronto</h4>
+                   
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-images"></i>
+                    <h4>Cobra Médical Bernes </h4>
+                    
+                  </div>
+                </div>
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-title" data-aos="fade-right">
+              <h2>Recrutement</h2>
+              
+            </div>
+          </div>
+          <div class="col-lg-4">
+          
+              </div>
+ 	<div class="newsitem_text">
+			<h3><span style="color: #003366;">Consultez les offres d'emploi du Centre Hospitalier Cobra Médical et déposez vos candidatures<br></span></h3>
+<p> </p>
+<p><a href="https://cyberladifference.business.site/" target="_blank">https://cyberladifference.business.site/</a></p>
+<p> </p>
+<p> </p>
+<p><span style="color: #003366;"><br></span></p>
+<h3><span style="color: #003366;">Des praticiens hospitaliers, praticiens contractuel, assistants :</span></h3>
+<p style="text-align: left;"><span style="color: #008080; font-size: 10pt; text-decoration: underline;"><strong>Pour les praticiens hospitaliers : </strong></span></p>
+<p style="text-align: left;"><span style="font-size: 10pt;">Les postes vacant sont disponibles sur le site du Centre National de Gestion. Deux tours de recrutements sont ouverts en avril et en octobre. Toutefois, les candidatures sont recevables toutes l'année. Les modalités de candidature peuvent être obtenues sur le <span style="text-decoration: underline;"><span style="font-size: 10pt;"><span style="color: #008080; text-decoration: underline;"><em><strong><a href="http://www.cng.sante.fr/" target="_blank"><span style="color: #008080; text-decoration: underline;">site du CNG</span></a></strong></em>.<br></span></span></span></span></p>
+<p style="text-align: left;"><span style="font-size: 10pt;">Les praticiens titulaires du concours de PH peuvent faire acte de candidature par courrier simultanément auprès du :</span></p>
+<p><br><span style="font-size: 10pt;"><strong>Directeur du Groupe Hospitalier Cobra Médical </strong><br><span style="font-size: 10pt;">2 avenue Alexandre Marqui<br><span style="font-size: 10pt;">65107 LOURDES Cedex</span></span></span></p>
+<p><span style="font-size: 10pt;"><span style="font-size: 10pt;"><span style="font-size: 10pt;"><br></span></span></span></p>
+<p><span style="font-size: 10pt;"><strong>Centre National de Gestion</strong><br><span style="font-size: 10pt;">Département de Gestion des Praticiens Hospitaliers<br><span style="font-size: 10pt;">21 rue Leblanc<br><span style="font-size: 10pt;">65109 LOME TOGO</span></span></span></span></p>
+<p><span style="font-size: 10pt;">Pour tout renseignement sur ces postes, vous pouvez contacter l<span style="font-size: 10pt;">e service des Affaires Médicales au  00 228 90 19 94 29</span></span></p>
+<p><span style="color: #008080; font-size: 10pt; text-decoration: underline;"><strong>Pour les autres statuts :</strong></span></p>
+<p><span style="font-size: 10pt;">Les candidatures spontanées peuvent être envoyées simultanément à :</span></p>
+<p><span style="font-size: 10pt;"><strong>M. Le Docteur David Malet,</strong>  Président de la CME</span></p>
+<p><span style="font-size: 10pt;"><strong>Mme Lasalle,</strong> Directrice Adjointe chargée des affaires médicales au 00 228 90 41 46 46<br><span style="font-size: 10pt;"></span></span></p>
+<p> </p>
+<h3 style="text-align: left;"><span style="color: #003366;">Des infirmiers, aides-soignants, personnels techniques ou administratifs :</span></h3>
+<p><span style="font-size: 10pt;">Le Centre Hospitalier Cobra Médical  recherche des IBODE, IDE, AS, kinésithérapeutes...</span></p>
+<p><span style="font-size: 10pt;">Vous pouvez nous faire parvenir vos candidatures aux coordonnées ci-dessous.</span></p>
+<p style="text-align: left;"><span style="font-size: 10pt;"><strong>Monsieur le Directeur du Centre Hospitalier de Lourdes,</strong><br><strong>Direction des Ressources Humaines, </strong><br><strong>2 avenue Alexandre Marqui </strong><br><strong>65 109 LOME TOGO Cedex</strong><br><span style="font-size: 10pt;"><br></span></span></p> 	
+		</div>
+            </div>
+          </div>
+        </div>
+
+				
+	
+	
+	
+
+	</div>
+      </div>
+    </section><!-- End Services Section -->
+
+   
+    
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-title" data-aos="fade-right">
+              <h2>Team</h2>
+              <p>.</p>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                  
+                  <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                  <div class="member-info">
+                    <h4>Hervé KABAMBA</h4>
+                    <span>Professeur </span>
+                    <p>Maître de Stage</p>
+                    <div class="social">
+                      <a href=""><i class="ri-twitter-fill"></i></a>
+                      <a href=""><i class="ri-facebook-fill"></i></a>
+                      <a href=""><i class="ri-instagram-fill"></i></a>
+                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="member" data-aos="zoom-in" data-aos-delay="200">
+                  <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+                  <div class="member-info">
+                    <h4>Yannick KUTOGLO</h4>
+                    <span>Etudiant</span>
+                    <p>Etudiant participant à la conception et au développement d'une application web de gestion d'un Service Hospitalier</p>
+                    
+                    <div class="social">
+                      <a href=""><i class="ri-twitter-fill"></i></a>
+                      <a href=""><i class="ri-facebook-fill"></i></a>
+                      <a href=""><i class="ri-instagram-fill"></i></a>
+                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+    
+    
+    
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-right">
+            <div class="section-title">
+              <h2>Contact</h2>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+            <iframe width="702" height="367" id="gmap_canvas" src="https://maps.google.com/maps?q=CYBER%20CAFE%20LA%20DIFFERENCE&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/divi-discount-code-elegant-themes-coupon/">divi discount</a><br><style>.mapouter{position:relative;text-align:right;height:367px;width:702px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:367px;width:702px;}</style>
+            <div class="info mt-4">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Avédji sito non loin de la Clinique Source de Vie ,Lomé-TOGO , O5 BP 319</p>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 mt-4">
+                <div class="info">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>yannkut44@gmail.com</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="info w-100 mt-4">
+                  <i class="bi bi-phone"></i>
+                  <h4>Call:</h4>
+                  <p>90 19 94 29</p>
+                </div>
+              </div>
+            </div>
+                              
+     
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= --> 
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Cobra Médical</h3>
+            <p>
+              Avédji sito non loin de la Clinique Source de Vie  <br>
+              Lomé<br>
+              TOGO <br><br>
+              <strong>Phone:</strong> +228 90 19 94 29<br>
+              <strong>Email:</strong> yannkut44@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Acceuil</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Nos spécialités</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Recrutement</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/newRDV">Rendezvous</a></li>
+             
+              <li><i class="bx bx-chevron-right"></i> <a href="#team">Team</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#team">Team</a></li>
+              
+            </ul>
+          </div>
+
+        
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Cobra Médical</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
+          Designed by <a href="https://cyberladifference.business.site/">YannKut</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+const form = document.querySelector('contact-form');
+
+
+function sendMsg(e){
+e.preventDefault();	
+
+      name=document.querySelector('name');
+      email=document.querySelector('email');
+      subject=document.querySelector('subject');
+      message=document.querySelector('message');
+
+
+
+      
+      // envoyez l'email
+      
+    Email.send({
+    SecureToken : "27c1be33-a2b1-4b77-990b-49810c5b43f6",
+    To : 'yannkut44@gmail.com',
+    From : email.value,
+    Subject : subject.value,
+    Body : message.value
+
+}).then(
+  message => alert(message)
+);
+}
+form.addEventListener('submit' , sendMsg);
+</script>
+</body>
+
+</html>
